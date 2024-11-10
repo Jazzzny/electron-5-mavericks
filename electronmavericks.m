@@ -44,11 +44,5 @@ static BOOL swizzleMethod(Class class, SEL originalSelector, SEL swizzledSelecto
 
 __attribute__((constructor))
 static void ElectronSwizzle() {
-    Class class = [NSFont class];
-
-    // systemFontOfSize:weight:
-    SEL originalSelector2 = @selector(systemFontOfSize:weight:);
-    SEL swizzledSelector2 = @selector(swizzled_systemFontOfSize:weight:);
-
-    swizzleMethod(class, originalSelector2, swizzledSelector2);
+    swizzleMethod([NSFont class], @selector(systemFontOfSize:weight:), @selector(swizzled_systemFontOfSize:weight:));
 }
